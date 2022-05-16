@@ -1,0 +1,102 @@
+<div class="row mt-10 ml-10 user-profile" *ngIf="userDetailsLoaded">
+    <div class="col-md-2 p-5 alignment">
+        <span>
+            <img src="../../../assets/profile.ico" class="picture-border rounded-circle h-15" />
+        </span>
+    </div>
+    <div class="col-md-10 user-details">
+        <i class="fa-solid fa-user mr-5"></i>{{userData.first_Name +' '+ userData.last_Name}}<p
+            class="badge rounded-pill bg-primary badge-shadow mp-8">
+            @{{userData.login_Id}}
+        </p>
+        <p class="badge rounded-pill bg-info badge-shadow mp-8">{{data.length}}
+            Tweet(s)
+        </p>
+    </div>
+</div>
+
+<div class="row mt-10 ml-10" [hidden]="hasTweets">
+    <div class="col-md-12 p-0">
+        <div class="d-flex justify-content-center">
+            <p>No tweets to show <img src="https://img.icons8.com/color/48/000000/sad-ghost.png" /></p>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngFor="let d of data">
+    <div class="col-md-12">
+        <div class="row m-10">
+            <div class="col-md-12 p-0">
+                <div class="card main-card">
+                    <div class="card-header">
+                        {{d.name}} <a [routerLink]="'/user/' + d.login_Id"><b>@{{d.login_Id}}</b></a>
+                    </div>
+                    <div class="card-body pb-0">
+                        <p class="card-text f-right"><time>{{d.date | amTimeAgo}}</time></p>
+                        <p class="card-text">{{d.post}}</p>
+                        <p class="card-text f-right" ngbPopover={{d.liked_By}} triggers="mouseenter:mouseleave"
+                            popoverTitle="Liked by" container="body" placement="left">
+                            <b>Likes:</b> {{d.like}}
+                        </p>
+                        <a [class.disabled]="isLiked(d)" class="mr-10 black cursor" placement="top"
+                            ngbTooltip="Like tweet" (click)="!isLiked(d) && onLike(d)">
+                            <i class="material-icons">favorite_border</i></a>
+                        <a class="black pointer" placement="top" ngbTooltip="Reply" (click)="onReply(d)">
+                            <i class="material-icons">chat_bubble_outline</i>
+                        </a>
+                        <div class="mb-10" *ngIf="isReplyClicked">
+                            <div class="d-flex w-100">
+                                <div class="mb-10 w-100 d-inherit">
+                                    <img src="../../../assets/profile.ico"
+                                        class="picture-border rounded-circle mr-5 h-40" />
+                                    <label [hidden]="!errorMessage" class="red">*{{errorMessage}}</label>
+                                    <input type="text" #replyPost name="replyPost" class="form-control form-control-md"
+                                        placeholder="Reply something..." maxlength="144" [value]="replyData.content"
+                                        required />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary mr-10 ml-45"
+                                (click)="onReplyConfirm(replyPost.value)">
+                                Reply
+                            </button>
+                            <button type="button" class="btn btn-secondary" (click)="closePopup()">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                    <div class="container comments">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-12 p-0">
+                                <div class="headings d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-outline-primary border-radius" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapseComments' + d.id" aria-expanded="false"
+                                        aria-controls="collapseComments">
+                                        Comments({{d.reply.length}})
+                                    </button>
+                                </div>
+                                <div class="card p-3 collapse user-comments" [attr.id]="'collapseComments' + d.id"
+                                    *ngFor="let r of d.reply">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center">
+                                            <img src="../../../assets/profile.ico"
+                                                class="picture-border rounded-circle mr-5 mt-5 h-4" />
+                                            <span>
+                                                <small class="font-weight-bold text-primary">{{r.username}}</small>
+                                                <small class="font-weight-bold">: {{r.content}}</small>
+                                            </span>
+                                        </div>
+                                        <small>{{r.date | amTimeAgo}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p class="white"> Loading... </p>
+</ngx-spinner>

@@ -1,0 +1,45 @@
+<section class="h-90 bg-image">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-90">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card br-15">
+            <div class="card-body p-4">
+              <h2 class="text-uppercase text-center mb-4">Login</h2>
+
+              <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+                <div class="form-outline mb-4">
+                  <label class="error" *ngIf="error">{{errorMessage}}</label>
+                  <input type="text" id="emailId" name="emailId" class="form-control form-control-md"
+                    placeholder="Email or Login Id" #emailId="ngModel" [(ngModel)]="service.formData.Email" required
+                    [class.invalid]="emailId.invalid &#038;&#038; emailId.touched" />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="password" name="password" class="form-control form-control-md"
+                    placeholder="Password" #password="ngModel" [(ngModel)]="service.formData.Password" required
+                    [class.invalid]="password.invalid &#038;&#038; password.touched" />
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    [disabled]="form.invalid">Login</button>
+                </div>
+
+                <p class="text-center text-muted mt-3 mb-0"><a routerLink="/forgot-password"
+                    class="fw-bold text-body"><u>Forgot password?</u></a></p>
+
+                <p class="text-center text-muted mt-3 mb-0">Haven't joined us yet? <a routerLink="/register"
+                    class="fw-bold text-body"><u>Register here</u></a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p class="white"> Loading... </p>
+</ngx-spinner>

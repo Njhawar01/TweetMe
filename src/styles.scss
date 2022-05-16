@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.shadow {
+    box-shadow: 5px 5px 10px grey !important;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: inherit;
+}

@@ -1,0 +1,185 @@
+.m-10 {
+    margin: 10px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.picture-border {
+    border: 2px solid grey;
+    background-color: whitesmoke;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.f-right {
+    float: right;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.pb-0 {
+    padding-bottom: 0px;
+}
+
+.tweet-card {
+    border-radius: 10px;
+    //background-image: linear-gradient(to right, #DECBA4, #3E5151);
+    background-image: linear-gradient(to right, #8360c3, #2ebf91);
+    // background-color: #8EC5FC;
+    // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    // background-color: #74EBD5;
+    // background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+
+}
+
+.main-card {
+    border-radius: 10px;
+}
+
+.black {
+    color: black;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .modal {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.border-radius {
+    border-radius: 20px;
+}
+
+.disabled {
+    color: red;
+    cursor: not-allowed;
+    text-decoration: underline;
+}
+
+.dots {
+    height: 4px;
+    width: 4px;
+    margin-bottom: 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.badge {
+    padding: 7px;
+    padding-right: 9px;
+    padding-left: 16px;
+    box-shadow: 5px 6px 6px 2px #e9ecef
+}
+
+.user-img {
+    margin-top: 4px
+}
+
+.check-icon {
+    font-size: 17px;
+    color: #c3bfbf;
+    top: 1px;
+    position: relative;
+    margin-left: 3px
+}
+
+.form-check-input {
+    margin-top: 6px;
+    margin-left: -24px !important;
+    cursor: pointer
+}
+
+.form-check-input:focus {
+    box-shadow: none
+}
+
+.icons i {
+    margin-left: 8px
+}
+
+.reply {
+    margin-left: 12px
+}
+
+.reply small {
+    color: #b7b4b4
+}
+
+.reply small:hover {
+    color: green;
+    cursor: pointer
+}
+
+.m-custom {
+    margin: 20px 10px 0px 10px;
+}
+
+.search-form {
+    width: 40vw; 
+    margin: auto;
+}
+
+.h-40 {
+    height: 40px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.d-inherit {
+    display: inherit;
+}
+
+.c-red {
+    color: red;
+}
+
+.c-white {
+    color: white;
+}
+
+.ml-45 {
+    margin-left: 45px;
+}
+
+.comments {
+    margin-bottom: 10px; 
+    margin-left: 0px; 
+    max-width: 100%;
+}
+
+.user-comments {
+    border-radius: 10px; 
+    margin-top: 10px; 
+    background-color: gainsboro;
+}
+
+.h-4 {
+    height: 4vh;;
+}

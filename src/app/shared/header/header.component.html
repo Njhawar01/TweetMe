@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-0 h-10">
+  <a class="navbar-brand p-0" routerLink="/home">
+    <img src="assets/Logo.png" class="logo-img">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse navbar-1" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item" *ngIf="!isLoggedIn()">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/register">Register</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn()">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/all-tweets">All Tweets</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/all-users">All Users</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" style="cursor: pointer;" [routerLinkActive]="['active']"
+          [routerLink]="'/user/' + currentUser">{{currentUser}}</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" style="cursor: pointer;" (click)="logOut()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

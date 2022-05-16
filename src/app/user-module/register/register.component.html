@@ -1,0 +1,91 @@
+<section class="h-90 bg-image">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-90">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card br-15">
+            <div class="card-body p-4">
+              <h2 class="text-center mb-4">Create your TweetMe account</h2>
+
+              <form autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+                <label class="blue">* All fields are mandatory</label><br>
+                <label class="mb-5 blue">* Password should be atleast 6 characters</label><br>
+                <label class="mb-5 red" *ngIf="errorMessage">* {{errorMessage}}</label>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name"
+                        #firstName="ngModel" [(ngModel)]="service.formData.First_Name" required
+                        [class.invalid]="firstName.invalid &#038;&#038; firstName.touched" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name"
+                        #lastName="ngModel" [(ngModel)]="service.formData.Last_Name" required
+                        [class.invalid]="lastName.invalid &#038;&#038; lastName.touched" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="loginId" name="loginId" class="form-control form-control-md"
+                        placeholder="Login Id" #loginId="ngModel" [(ngModel)]="service.formData.Login_Id" required
+                        [class.invalid]="loginId.invalid &#038;&#038; loginId.touched" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="contactNumber" name="contactNumber" class="form-control form-control-md"
+                        placeholder="Contact Number" #contactNumber="ngModel"
+                        [(ngModel)]="service.formData.Contact_Number" minlength="10" maxlength="10" required
+                        [class.invalid]="contactNumber.invalid &#038;&#038; contactNumber.touched" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="emailId" name="emailId" class="form-control form-control-md"
+                    placeholder="Email Id" #emailId="ngModel" [(ngModel)]="service.formData.Email" required
+                    [class.invalid]="emailId.invalid &#038;&#038; emailId.touched" />
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="password" id="password" name="password" class="form-control form-control-md"
+                        placeholder="Password" #password="ngModel" [(ngModel)]="service.formData.Password" required
+                        minlength="6" [class.invalid]="password.invalid &#038;&#038; password.touched" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="password" id="repassword" name="repassword" class="form-control form-control-md"
+                        placeholder="Confirm Password" #repassword="ngModel"
+                        [(ngModel)]="service.formData.Confirm_Password" required minlength="6"
+                        [class.invalid]="repassword.invalid &#038;&#038; repassword.touched" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    [disabled]="form.invalid">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-3 mb-0">Already have an account? <a routerLink="/login"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+  <p class="white"> Loading... </p>
+</ngx-spinner>

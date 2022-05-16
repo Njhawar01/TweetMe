@@ -1,0 +1,104 @@
+<div class="row ml-10 mr-10 mt-20">
+    <div class="col-md-12 p-0">
+        <div class="row w-60 ma-0">
+            <div class="col-sm-12">
+                <form>
+                    <div class="form-group mb-10">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="../../../assets/profile.ico" class="picture-border rounded-circle h-40" />
+                            </div>
+                            <div class="col-md-11">
+                                <label [hidden]="!addError" class="red">*{{addError}}</label>
+                                <input type="text" #addPost name="addPost" class="form-control form-control-md"
+                                    placeholder="What's happening...?" [value]="addData.post" maxlength="144" required>
+                                <button type="button" class="btn btn-primary mt-10 btn-add"
+                                    (click)="addClicked(addPost.value)">
+                                    Tweet
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10 ml-10" [hidden]="hasTweets">
+        <div class="col-md-12 p-0">
+            <div class="d-flex justify-content-center">
+                <p>No tweets to show <img src="https://img.icons8.com/color/48/000000/sad-ghost.png" /></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" *ngFor="let d of data">
+    <div class="col-md-12">
+        <div class="row p-10 m-10">
+            <div class="col-md-12">
+                <div class="card main-card">
+                    <div class="card-header">
+                        <img src="../../../assets/profile.ico" class="picture-border rounded-circle h-40" />
+                        {{d.name}} <a [routerLink]=onUserHandleClick(d.login_Id)><b>@{{d.login_Id}}</b></a>
+                    </div>
+                    <div class="card-body pb-0">
+                        <p class="card-text f-right"><time>{{d.date | amTimeAgo}}</time></p>
+                        <p class="card-text" *ngIf="!isEditClicked">{{d.post}}</p>
+                        <label [hidden]="!errorMessage" class="red">*{{errorMessage}}</label>
+                        <div *ngIf="isEditClicked" class="edit-menu">
+                            <input type="text" #editPost name="editedPost" class="form-control form-control-md mb-10"
+                                [value]="editData.post" required />
+                            <button type="button" class="btn btn-primary mb-10 mr-10"
+                                (click)="updateClicked(editPost.value)">
+                                Update
+                            </button>
+                            <button type="button" class="btn btn-secondary mb-10" (click)="closePopup()">
+                                Close
+                            </button>
+                        </div>
+                        <p class="card-text f-right" ngbPopover={{d.liked_By}} triggers="mouseenter:mouseleave"
+                            popoverTitle="Liked by" container="body" placement="left">
+                            <b>Likes:</b> {{d.like}}
+                        </p>
+                        <a class="mr-10 black pointer" (click)="editModal(d)" placement="top" ngbTooltip="Edit tweet"><i
+                                class="material-icons">edit</i></a>
+                        <a class="dark-red pointer" (click)="deleteModal(d)" placement="top"
+                            ngbTooltip="Delete tweet"><i class="material-icons">delete_outline</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- deleteModal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':deleteDisplayStyle}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content shadow">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p><strong>Are you sure you want to delete this tweet?</strong></p>
+                <p>All information associated to this tweet will be permanently deleted.
+                    <span class="text-danger">This operation can not be undone.</span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="deleteClicked()">
+                    Delete
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p class="white"> Loading... </p>
+</ngx-spinner>

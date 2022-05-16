@@ -1,0 +1,42 @@
+<div class="row c-margin">
+    <div class="col-md-12">
+        <form autocomplete="off" class="form-inline search-form">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input class="form-control mr-sm-2" type="text" name="search-text" id="search-text"
+                    aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Search user">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container user-container">
+    <div class="card user-profile" placement="top" ngbTooltip="Click to open {{d.first_Name}}'s profile"
+        tooltipClass="custom-tooltip" *ngFor="let d of data  | filter: searchText"
+        [routerLink]=onUserHandleClick(d.login_Id)>
+
+        <div class="gradient-bg user-card-header">
+            <div class="border-radius h-100 p-05">
+                <img src="../../../assets/profile.ico" class="picture-border rounded-circle picture h-100 z-200" />
+            </div>
+        </div>
+        <div class="card-title h5 center z-200 text-align-center">
+            {{d.first_Name +' '+ d.last_Name}}
+        </div>
+        <div class="card-body text-align-center bt-1">
+
+            <div class=" mb-0 m-auto p-8">
+                <i class="fa-solid fa-user mr-5"></i><b>@{{d.login_Id}}</b>
+            </div>
+            <div class=" mb-0 p-8">
+                <i class="fa-solid fa-envelope mr-5"></i>{{d.email}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p class="c-white"> Loading... </p>
+</ngx-spinner>
